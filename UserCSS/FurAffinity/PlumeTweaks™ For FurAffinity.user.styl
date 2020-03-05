@@ -1,0 +1,781 @@
+// ─── SECTION METADATA & CHANGELOG ───────────────────────────────────────────────
+// ─── NOTE Metadatas ─────────────────────────────────────────────────────────────
+/* ==UserStyle==
+@name           PlumeTweaks™ For FurAffinity
+@namespace      github.com/Tiny-Plume
+@version        1.0.0
+@description    A custom theme for FurAffinity. Requires using their "Modern Dark" theme.
+@author         Tiny Plume
+@license		CC-BY-NC-4.0
+@preprocessor	stylus
+
+@var	select		BlurStuff		"Blur Mature / Adult Stuff"			["noblur:No Blur", "blurM:Blur Mature+", "blurA:Blur Adult"]
+@var	checkbox	HiddenCom		"Hide Hidden Comments"				1
+@var	checkbox	ScrollBar		"Custom Scrollbar (Chrome Only)"	1
+@var	color		Acc				"Accent Color"						#EFB221
+@var	color		Acc-Light		"Light Accent Color"				#EFCB72
+@var	color		BG-Normal		"Background Color" 					#222224
+@var	color		BG-Dark			"Dark Background Color"				#1C1C1F
+@var	color		BG-Darker		"Darker Background Color"			#151517
+@var	text		CustomFont		"Custom Font"						"Arial"
+==/UserStyle== */
+/* ─── NOTE: Changelog ──────────────────────────────────────────────────────────────────
+	v1.0.0 - 4 March 2020
+		• The theme is now written using the Stylus preprocessor.
+		• Many little changes everywhere.
+		• Styled the Notes page.
+		• Added some slight animations here and there.
+
+		• Dropped support for Stylish / userstyles.org. Use Stylus/openusercss.org instead, it's better for your privacy and supports newer things.
+		• Theme settings can no be changed directly from Stylus. Which is the main reason the theme got rewritten. Enjoy.
+		• Version Number will now be written as "Major Update.Feature Update.Bugfix".
+		
+		I spent far too long working on this. If you use and enjoy this theme, consider donating: https://www.paypal.me/tinyplume.
+
+	v0.9.0 and older...
+		• Check here: https://userstyles.org/styles/170011/furaffinity-plumetweaks
+// ─── NOTE: Planned ────────────────────────────────────────────────────────────────────
+	v2.0.0 - "Hero of Light Update" - When Half-Life 3 gets released.
+		• Animating things a bit more.
+		• Support for light-color backgrounds: Automatically adjusting text color for light backgrounds.
+	v1.1.0 - "" - Soon™
+		• Adjustement to font sizes.
+		• Font-size customisation settings.
+// ─── NOTE: Known Issues ────────────────────────────────────────────────────────────────────
+	• None at the moment.
+─────────────────────────────────────────────────────────────────────────────────────── */
+// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+// ─── SECTION ACTUAL THEME ───────────────────────────────────────────────────────
+@-moz-document url-prefix("http://www.furaffinity.net/"), url-prefix("https://www.furaffinity.net/") {
+	// ─── SECTION GLOBAL STYLE CHANGES ───────────────────────────────────────────────
+	// NOTE Variables
+	:root {
+		--Acc:			Acc;
+		--Acc-Light:	Acc-Light;
+		--BG-Normal:	BG-Normal;
+		--BG-Dark:		BG-Dark;
+		--BG-Darker:	BG-Darker;
+	}
+	// NOTE Global Font Change
+	* {
+		font-family: CustomFont, Arial, Helvetica, sans-serif !important;
+	}
+
+	// NOTE Global BG Color
+	html {
+		background: var(--BG-Darker);
+	}
+
+	// NOTE Selection Color
+	::selection {
+		background: var(--Acc);
+	}
+
+	// NOTE Custom Scrollbar Conditional
+	unless Scrollbar == 0 {
+		::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: var(--BG-Dark);
+			box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: var(--Acc);
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+			background: var(--Acc-Light);
+		}
+	}
+
+	// NOTE Button Styles
+	.button,
+	.section-button,
+	button.standard,
+	button.stop.remove,
+	button.go {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		background: var(--BG-Normal) !important;
+		border: none !important;
+		border-top: 3px solid var(--Acc) !important;
+		box-sizing: border-box;
+		transition: all 0.12s ease-in;
+
+		&:hover {
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			background: var(--Acc) !important;
+			border-top: 3px solid var(--Acc) !important;
+			box-sizing: border-box;
+			color: var(--BG-Normal) !important;
+			transform: skewY(-2deg);
+		}
+	}
+
+	.nuke {
+		-moz-box-sizing: border-box !important;
+		-webkit-box-sizing: border-box !important;
+		background: var(--BG-Normal) !important;
+		border: none !important;
+		border-radius: 0px !important;
+		border-top: 3px solid red !important;
+		box-sizing: border-box !important;
+		transition: all 0.12s ease-in !important;
+
+		&:hover {
+			-moz-box-sizing: border-box !important;
+			-webkit-box-sizing: border-box !important;
+			background: rgb(70, 0, 0) !important;
+			border-top: 3px solid red !important;
+			box-sizing: border-box !important;
+			color: var(--BG-Normal) !important;
+			text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red !important;
+			transform: skewY(-2deg) !important;
+		}
+	}
+
+	.buttons {
+		div {
+			border: none !important;
+		}
+
+		a {
+			background: var(--BG-Dark) !important;
+			border-top: 3px solid var(--Acc) !important;
+			transition: all 0.12s ease-in !important;
+
+			&:hover {
+				background: var(--Acc) !important;
+				color: var(--BG-Darker);
+				transition: all 0.12s ease-in !important;
+			}
+		}
+	}
+
+	// NOTE Administrator Notice Thingy
+	div#header {
+		background-color: var(--BG-Darker);
+	}
+
+	// NOTE Announcement Thingy
+	#news {
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-width: 90%;
+		border-top: 2px solid var(--Acc);
+		background: var(--BG-Darker);
+		color: var(--Acc);
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+		text-shadow: 0 0 8px currentColor;
+		font-size: 1.15rem;
+	}
+
+	// NOTE Better Quotes
+	.bbcode_quote {
+		background-color: var(--BG-Dark);
+		border: none !important;
+		border-top: 2px solid var(--Acc) !important;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	// NOTE Better Horizontal Lines
+	hr,
+	.comment_container .links {
+		border-image-source: linear-gradient(
+			to right,
+			transparent,
+			var(--Acc),
+			transparent
+		);
+		border-image-slice: 1;
+		border-image-width: 1;
+		margin: 0;
+		opacity: 0.6;
+	}
+
+	// NOTE Text-Areas Styling
+	#JSMessage, #JSMessage_blank,
+	textarea, .textbox {
+		border: none !important
+		border-top: none !important;
+		box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
+		background: var(--BG-Dark) !important;
+		border-radius: 0 !important;
+		transition: all 0.1s ease-in-out;
+
+		&:focus {
+			margin-top: 3px !important;
+			background: var(--BG-Normal) !important;
+			border: none var(--Acc) !important;
+			border-top: 3px solid var(--Acc) !important;
+			transition: all 0.1s ease-in-out;
+		}
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION TEXT COLORS ────────────────────────────────────────────────────────
+	// NOTE Recolor Titles and names, etc...
+	h2,
+	h2 a:hover,
+	h3,
+	h3 a,
+	a h4:hover,
+	.current,
+	.table-cell strong {
+		color: var(--Acc) !important;
+	}
+
+	h2 a,
+	h3 a:hover,
+	h4,
+	.highlight,
+	.current:hover {
+		color: var(--Acc-Light) !important;
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION NAVBAR ─────────────────────────────────────────────────────────────
+	// NOTE Remove Mobile Menu on Desktop
+	@media (min-width: 768px) {
+		#nav-mobile,
+		.toggle_label,
+		#mobile-notification-bar {
+			opacity: 0;
+		}
+	}
+
+	// NOTE Navbar Style
+	#ddmenu {
+		border-bottom: 3px solid var(--Acc) !important;
+		background: var(--BG-Darker) !important;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+
+		.dropdown {
+			border: none !important;
+			border-bottom: 3px solid var(--Acc) !important;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+		}
+	}
+
+	.dd-inner {
+		background: var(--BG-Darker) !important;
+	}
+
+	// NOTE Search Bar
+	#searchbox input[type="search"],
+	#searchbox input[type="search"]:focus,
+	#searchbox input[type="search"]:indeterminate {
+		background: var(--BG-Normal) url("https://www.furaffinity.net/themes/beta/img/icons/search.png") no-repeat 9px center !important;
+	}
+
+	// NOTE Remove Avatar Border
+	img.menu-space-saver {
+		border: none;
+	}
+
+	// NOTE Color Notifications
+	.message-bar-desktop a {
+		color: var(--Acc) !important;
+	}
+
+	.message-bar-desktop a:hover {
+		color: var(--Acc-Light) !important;
+	}
+
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION BANNER/FOOTER ───────────────────────────────────────────────────────
+	// NOTE New Banner
+	.site-banner {
+		background: url("https://puu.sh/Fh4xU/5c43cf7520.png") no-repeat;
+		background-position: center !important;
+		box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.8);
+		background-size: cover;
+	}
+
+	// NOTE New Footer
+	#footer {
+		background-color: var(--BG-Darker);
+		padding: 10px 0px !important;
+		box-shadow: inset 0 10px 10px -10px rgba(0, 0, 0, 0.4);
+		border-top: none !important;
+	}
+
+	// NOTE Theme Credits
+	#footer:before {
+		color: var(--Acc);
+		font-size: 10pt !important;
+		content: "PlumeTweaks™ For FurAffinity\aVersion: 1.0.0\a\a© 2020 - CC-BY-NC-4.0\aTiny Plume";
+		white-space: pre;
+		font-weight: bold;
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION RATING BORDERS ─────────────────────────────────────────────────────
+	// ---- SECTION Submission Rating Borders
+	// NOTE General Submission
+	figure.r-general u>a, .preview_img a.r-general {
+		border-radius: 0px !important;
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	// Mature Submission
+	figure.r-mature u>a, .preview_img a.r-mature {
+		border-radius: 0px !important;
+		border: 2px solid var(--BG-Darker) !important;
+		box-shadow: 2px 2px 0px #26a4ad !important;
+	}
+
+	// Adult Submission
+	figure.r-adult u>a, .preview_img a.r-adult {
+		border-radius: 0px !important;
+		border: 2px solid var(--BG-Darker) !important;
+		box-shadow: 2px 2px 0px #c1604d !important;
+	}
+
+	// NOTE Rating Borders - Profile Pages
+	.r-general {
+		}
+	// ---- !SECTION
+
+	// ---- SECTION Blur NSFW Conditionals
+	// NOTE Mature+
+	if BlurStuff == blurM {
+		figure.r-mature u>a img, figure.r-adult u>a img {
+			filter: blur(10px);
+			transition: all 0.2s ease-in-out !important;
+			
+			&:hover {
+				filter: blur(0px);
+			}
+		}
+	}
+
+	// NOTE Adult
+	if BlurStuff == blurA {
+		figure.r-adult u>a img {
+			filter: blur(12px);
+			transition: all 0.2s ease-in-out !important;
+			
+			&:hover {
+				filter: blur(0px);
+			}
+		}
+	}
+	// ---- !SECTION
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION BACKGROUND COLORS & SHADOWS ────────────────────────────────────────
+	// NOTE Backkground Color
+	.section-body,
+	.section-footer,
+	.section-submission,
+	.section-header,
+	.userpage-info-container,
+	.user-profile-options,
+	.user-profile-main,
+	.table-cell,
+	table.p20b,
+	.bg4 {
+		background: var(--BG-Darker) !important;
+	}
+
+	// NOTE Section header & shadow
+	section,
+	.bg4 {
+		border: none;
+		border-top: 3px solid var(--Acc);
+	}
+
+	// NOTE Section Shadows
+	#message,
+	#MsgForm section,
+	#messages-journals,
+	.content section:not(.gallery),
+	#standardpage section:not(.gallery),
+	table.p20b,
+	.bg4 {
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) !important;
+	}
+
+	// NOTE Fix section footers
+	.section-footer {
+		padding-bottom: 15px;
+	}
+
+	// NOTE Content Background
+	.content,
+	#sitecontent,
+	#site-content,
+	.bg3 {
+		background: var(--BG-Dark) !important;
+	}
+
+	// NOTE Remove Check Submissions/Journals/Etc BG
+	figcaption:hover,
+	figure.checked figcaption,
+	ul.message-stream li:hover,
+	#pageid-messagecenter-other div#messagecenter-other ul.message-stream li.checked {
+		background: var(--BG-Dark) !important;
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION PROFILE PAGES ──────────────────────────────────────────────────────
+	// NOTE Background Color
+	.userpage-layout {
+		background-color: var(--BG-Normal);
+	}
+
+	// NOTE User Infos Header
+	#user-profile {
+		background: var(--BG-Darker);
+		padding-top: 30px;
+	}
+
+	.user-nav a:hover {
+		color: var(--Acc);
+	}
+
+	// NOTE User Description
+	.userpage-layout-profile {
+		background: var(--BG-Darker);
+		padding-bottom: 20px !important;
+		box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
+	}
+
+	.userpage-profile {
+		border: none !important;
+	}
+
+	// NOTE Add Borders to Avatars 
+	.iconusername img,
+	.user-nav-avatar,
+	.avatar,
+	.comment_useravatar {
+		border: 2px solid rgba(0, 0, 0, 0.3);
+	}
+
+	// NOTE Section style / Sidebar
+	#page-userpage .userpage-section-right,
+	#page-userpage .userpage-section-left,
+	.sidebar {
+		border: none;
+		border-top: 3px solid var(--Acc);
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION COMMENTS ───────────────────────────────────────────────────────────
+	// NOTE Recreate Comments Block
+	.userpage-section-right.no-border {
+		border-top: 3px solid var(--Acc) !important;
+		padding: 10px;
+		background: var(--BG-Darker) !important;
+
+		&:before {
+			padding-bottom: 10px !important;
+			display: block;
+			font-size: 22px;
+			font-weight: 400;
+			color: var(--Acc);
+			content: "Profile Comments";
+		}
+	}
+
+	// NOTE Fix Avatar Position
+	.comment_useravatar {
+		position: relative;
+		left: -1px;
+	}
+
+	// NOTE Color Comments Username
+	.comment_username {
+		color: var(--Acc) !important;
+	}
+
+	// NOTE Comment Background color
+	.comment_container .body,
+	.comment_container .name,
+	.comment_container .header {
+		background-color: var(--BG-Normal) !important;
+	}
+
+	.comment_container:target>.base>.header,
+	.comment_container:target>.base>.name,
+	.comment_container:target>.base>.body {
+		background-color: var(--BG-Normal) !important;
+	}
+
+	// NOTE Comment Border
+	.comment_container .header,
+	.comment_container:target>.base>.header {
+		border-image: none;
+		border-top: 3px solid var(--Acc) !important;
+	}
+
+	.comment_container:target>.base>.body {
+		border-image: none;
+	}
+
+	// NOTE Comment Pointy bit color
+	.comment_container .header::after,
+	.comment_container:target>.base>.header::after,
+	a.comment_anchor:target~.base>.header::after {
+		border-color: transparent var(--BG-Normal) !important;
+	}
+
+	// NOTE Comment Hover Effect
+	@keyframes pulse {
+		0% {
+			background: transparent;
+		}
+		50% {
+			background: rgba(255,255,255, 0.025);
+		}
+		100% {
+			background: transparent;
+		}
+	}
+
+	.comment_container:hover {
+		animation: pulse 2s ease infinite;
+	}
+
+	// NOTE Anchored Comment Fixes
+	a.comment_anchor:target~.base>.body,
+	a.comment_anchor:target~.base>.header {
+		background: var(--BG-Normal) !important;
+		border: none;
+	}
+
+	a.comment_anchor:target~.base {
+		text-shadow: 0px 0px 5px currentColor;
+	}
+
+	// SECTION Hide Hidden Comments Conditional
+	unless HiddenCom == 0 {
+		.comment_container.collapsed_height {
+			display: none !important;
+		}
+	}
+	// ---- !SECTION
+
+	// NOTE BBCODE Formatting Icons
+	.bbcodeformat {
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE0AAABnCAYAAABFPs/gAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAG/mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTAzLTAyVDE2OjE5OjQ2KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0wMy0wMlQxNjozNzoxMSswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMC0wMy0wMlQxNjozNzoxMSswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4NWQ1MTEyZi1mYjFjLWZlNGYtOGEwYy1hMDNiNTg3Mzg5Y2EiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODVkNTExMmYtZmIxYy1mZTRmLThhMGMtYTAzYjU4NzM4OWNhIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ODVkNTExMmYtZmIxYy1mZTRmLThhMGMtYTAzYjU4NzM4OWNhIj4gPHBob3Rvc2hvcDpUZXh0TGF5ZXJzPiA8cmRmOkJhZz4gPHJkZjpsaSBwaG90b3Nob3A6TGF5ZXJOYW1lPSJJIiBwaG90b3Nob3A6TGF5ZXJUZXh0PSJJIi8+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0iQCIgcGhvdG9zaG9wOkxheWVyVGV4dD0iQCIvPiA8cmRmOmxpIHBob3Rvc2hvcDpMYXllck5hbWU9IkIiIHBob3Rvc2hvcDpMYXllclRleHQ9IkIiLz4gPHJkZjpsaSBwaG90b3Nob3A6TGF5ZXJOYW1lPSJpY29uIiBwaG90b3Nob3A6TGF5ZXJUZXh0PSJpY29uIi8+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0idSIgcGhvdG9zaG9wOkxheWVyVGV4dD0idSIvPiA8cmRmOmxpIHBob3Rvc2hvcDpMYXllck5hbWU9ImltZyIgcGhvdG9zaG9wOkxheWVyVGV4dD0iaW1nIi8+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0idXJsIiBwaG90b3Nob3A6TGF5ZXJUZXh0PSJ1cmwiLz4gPC9yZGY6QmFnPiA8L3Bob3Rvc2hvcDpUZXh0TGF5ZXJzPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjg1ZDUxMTJmLWZiMWMtZmU0Zi04YTBjLWEwM2I1ODczODljYSIgc3RFdnQ6d2hlbj0iMjAyMC0wMy0wMlQxNjoxOTo0NiswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnROmkUAAATfSURBVHja7Zs/r9MwFMXzVV7bFSEhJCQG+AAgRua3ITE9iRWxIRaYEAMSI0xMMLMzMzMz8xEC56EDh1snsRMn7WtOpau2Tvzv52M7vddtfn4+a+e236/mlOppDM3QloG22ezauQ2dOaV6DK02tIuH27+STF3vu2ZohmZohmZohpbszLPz7V6eT883e3ke3N21b59s/0tD3m/vNu2Pj2eX9vXNpj2/t92rB+XjXnx++fhPHqQhD+tCPuRPlYXPt2/s9upmuxeHhk7EPGg00iPIL6/+wQRA5PvwdHPZLnQC9yhYhYbycG/MgzIBh6CQBiNAXEOeCE7b3QsNmQgGIx+VgPTv76dBS5UT09iOqLyuegiN7/E+AIF1pbPPCi4bGozS1imEgjBiMX0MNMpe1YYyAQzpqIv3sAOACuXQmK7QqMw4zbqUrW1jfrSB4Iqg6RSlpPHO71GBpdAwdTAwbCRVxno5rTQPgdAIIAUt1Z4+aOwbPgMW2oZ2aXlZuw0aDmWxQBTCtaF0V4vQMAhQFhqI8jm6VDmgEiQX9ziN2Y6a05P50C6dsgf57Rmh6ahzNDFI+I6BYecAFvfqog6osDk2AoWt4A4CTadaVArXSp2G6IgC5yMHFEmF5jxyMA/KR574yKEzJ6VqguuEduv6rn19sS0y5Fn1w+39O7tixxzyrBrazWu79sWjbZEhj39G2QlpaIZmaFcQGiqylZnjng4WG5oj7N49De24OgPPB906MHg6chydq4RGz23XOkLv6ZR66CtTg1uIzs6Ua7wKNHYsd/SHOqPxBrq9tWyG8hirwHtX54ag0X/XZbnu+yJoWmktpRHGkIrUs6uOyrHQ6MCE+jhouYGiImj0uqqLeQo0uqNzgMU8Kd9/CTSUkwpV5vStCNrQSJdC43oSI0JcAvDO7wqW/v1a0FjmLNAo4xJldHWGqlXFMOiCenCdMYLos2dkrBY0DQlWn55UAKNFU6BxmsX1LY40B0qhpfLW2AhyBVEEreuIQi1oqWnD+7ROpE1VWp8Nqa2Ze+csgaaneqLSoiKnrmncPWFIh5L1ObFvNmVD43qTauyUNS21VjFN1xp2gmkxLjl1I4hHMFLXi6FRGTkLZU5n2AHdiXl2Qh829cFW06Y+py0CLZ5xqPHIwakXz4TwCMFQWk1ouKZnNvr62cy9c/Z1Bg3ls1ru776++0qgsV6eCoq/cydvBPrEnNu53M5wrURD+5SEert2zZq7ZzwfMhoavQOlP59KvA/6KwANp2sIpkroa0OONwXgUlYihqPyp2GB10ODnEaAxnNq9qfZc2tohuYIuyPsDhYbmiPs3gi8exqaoRnaqqClIjGaFsP3/LtMV95QTpMK0Iy13Hpq1DcZGlw2cELyL36MF5RCm8uWqqcIml7XaNLSSutSwlL1HATaqpTG6ckY4djpWXsty4FWs75RGwHdzvSkrlZp/ANpjAsw2KFgoDD11a92TdOzYvpv3NRjBaM6qalLU3/+ySpND5Zw+mkQN6qJxwNS51jjvXMo4Cie005BAQdRmqEZmqEZmqEZmqEZ2kzQ9IVKbWmLoNoFzNAMzdDKoS21QBuaoRmaoRnaFYNW23dvpVlpy0SJrDQrLe8v2FaaleY1zUq7qtCstCNQWnNqL0MzNEMzNEMzNEMztPlfvwB8AjOBSFqGswAAAABJRU5ErkJggg==") no-repeat;
+		cursor: pointer;
+		transition: all 0.2s ease-in-out;
+
+		&:hover {
+			filter: brightness(1.6);
+			transform: SkewY(-5deg);
+		}
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION GALLERIES FIXES (USER, BROWSE, MAIN PAGE...) ───────────────────────
+	// NOTE Random Fixes
+	.bg5,
+	.mobile-nav,
+	#columnpage .submission-sidebar,
+	#columnpage .sidebar,
+	.user-profile-options,
+	.browse-sidebar-container,
+	.submission-content {
+		background-color: var(--BG-Darker);
+	}
+
+	.submission-content section {
+		border: none;
+		border-top: 3px solid var(--Acc);
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	.browse-content {
+		background: var(--BG-Normal);
+	}
+
+	.browse-content section,
+	.browse-sidebar-container {
+		border: none;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	#gallery-browse {
+		border: none;
+		box-shadow: none !important;
+	}
+
+	.browse-content .section-header {
+		border-top: 3px solid var(--Acc);
+	}
+
+	#gallery-favorites,
+	#gallery-gallery,
+	#columnpage .content {
+		padding: 20px 0px !important;
+		background: var(--BG-Normal);
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	}
+
+	// NOTE Browse Sidebar Styling
+	.browse-search-flex-item {
+		.listbox {
+			border: none !important;
+			border-top: 3px solid var(--Acc) !important;
+			border-radius: 0 !important;
+		}
+		input#manual-page.textbox {
+			border-radius: 0 !important;
+			border: 1px solid var(--Acc) !important;
+		}
+	}
+
+	.search-flex-item-3 {
+		&:nth-child(9) { //* Style "Mature" Label
+			color: #26A4AD;
+		}
+
+		&:nth-child(10) { //* Style "Adult" Label
+			color: #C1604D;
+		}
+	}
+	
+	// NOTE Style Tags
+	.tags a {
+		background: var(--BG-Normal);
+		color: white !important;
+		border-left: 4px solid var(--Acc);
+	}
+
+	.tags a:hover {
+		font-weight: bold;
+		background: var(--Acc);
+		color: var(--BG-Darker) !important;
+	}
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+	// ─── SECTION NOTE PAGE ──────────────────────────────────────────────────────────
+	// NOTE Page Styling
+	.messagecenter-mail-container {
+		border-top: 3px solid var(--Acc);
+
+		.messagecenter-mail-nav-bar { //* Navbar Styling
+			background: var(--BG-Darker);
+			box-shadow: 0px 2px 5px rgba(0,0,0,0.3) !important;
+
+			a {
+				color: var(--Acc);
+				font-weight: bold;
+
+				&:hover {
+					color: var(--Acc-Light);	
+				}
+			}
+		}
+
+		.messagecenter-mail-note-folders { //* Sidebar Styling
+			background: var(--BG-Dark);
+			border: none;
+		}
+		.messagecenter-mail-content-pane { 
+			box-shadow: -2px 0px 5px rgba(0,0,0,0.3);	
+		}
+	}
+
+	// NOTE Message list Color Tweaks
+	#notes-list {
+		color: var(--Acc) !important;
+		
+		.note-list-sender {
+			font-weight: bold;
+		}
+
+		a:hover {
+			color: var(--Acc);
+		}
+	}
+
+	// ───────────────────────────────────────────────────────────────── !SECTION ─────
+}
+// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+// ─── SECTION OVERRIDE: CUTENESS-OVERLORD ────────────────────────────────────────
+@-moz-document url-prefix("https://www.furaffinity.net/user/cuteness-overlord/#shout-"), regexp("(https://www.furaffinity.net/)+(.)+(/cuteness-overlord/)"), regexp("(https://www.furaffinity.net/)+(.)+(/cuteness-overlord/)+(./)") {
+	// NOTE Variables
+	:root {
+		--Acc:			#26a4ad;
+		--Acc-Light:	#954940;
+		--BG-Normal:	#212c31;
+		--BG-Dark:		#172026;
+		--BG-Darker:	#121418;
+	}
+
+	// NOTE Change FA Logo Color
+	.nav-bar-logo {
+		filter: hue-rotate(145deg);
+	}
+
+	// NOTE Theme Creator Badge
+	#user-profile:before {
+		content: url("https://puu.sh/D4cFy/eb58e6fe9a.png");
+		white-space: pre;
+		opacity: 0.5;
+		padding-left: 12px;
+		position: relative;
+		top: -10px;
+	}
+
+	// NOTE Custom Banner
+	.site-banner {
+		background: url("https://puu.sh/D4cA3/661430aa2d.png") !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+		background-size: cover !important;
+	}
+
+}
+// ───────────────────────────────────────────────────────────────── !SECTION ─────
+
+// ─── SECTION OVERRIDE: TINY-PLUME ───────────────────────────────────────────────
+@-moz-document url-prefix("https://www.furaffinity.net/user/tiny-plume/#shout-"), regexp("(https://www.furaffinity.net/)+(.)+(/tiny-plume/)"), regexp("(https://www.furaffinity.net/)+(.)+(/tiny-plume/)+(./)") {
+	// NOTE Variables
+	:root {
+		--Acc:			#26a4ad;
+		--Acc-Light:	#954940;
+		--BG-Normal:	#212c31;
+		--BG-Dark:		#172026;
+		--BG-Darker:	#121418;
+	}
+
+	// NOTE Change FA Logo Color
+	.nav-bar-logo {
+		filter: hue-rotate(145deg);
+	}
+
+	// NOTE Theme Creator Badge
+	#user-profile:before {
+		content: url("https://puu.sh/D4cFy/eb58e6fe9a.png");
+		white-space: pre;
+		opacity: 0.5;
+		padding-left: 12px;
+		position: relative;
+		top: -10px;
+	}
+
+	// NOTE Custom Banner
+	.site-banner {
+		background: url("https://puu.sh/EmLpd/f6f7d08d5e.png") !important;
+		background-position: center !important;
+		background-repeat: no-repeat !important;
+		background-size: cover !important;
+	}
+}
+// ───────────────────────────────────────────────────────────────── !SECTION ─────
