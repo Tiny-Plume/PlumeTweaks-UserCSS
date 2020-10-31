@@ -3,7 +3,7 @@
 /* ==UserStyle==
 @name           PlumeTweaks™ For FurAffinity
 @namespace      github.com/Tiny-Plume/PlumeTweaks-UserCSS
-@version        1.0.0
+@version        1.0.1
 @description    A custom theme for FurAffinity. Requires using their "Modern Dark" theme.
 @author         Tiny Plume
 @license		CC-BY-NC-4.0
@@ -20,29 +20,37 @@
 @var	text		CustomFont		"Custom Font"						"Arial"
 ==/UserStyle== */
 /* ─── NOTE: Changelog ──────────────────────────────────────────────────────────────────
+	v1.0.1 - 31 October 2020
+		• Fixed some oversights when replying to a comment.
+
 	v1.0.0 - 4 March 2020
+		• This release now requires the Stylus addon.
+		• The theme is now hosted on my github.
+
 		• The theme is now written using the Stylus preprocessor.
 		• Many little changes everywhere.
 		• Styled the Notes page.
 		• Added some slight animations here and there.
 
-		• Dropped support for Stylish / userstyles.org. Use Stylus/openusercss.org instead, it's better for your privacy and supports newer things.
-		• Theme settings can no be changed directly from Stylus. Which is the main reason the theme got rewritten. Enjoy.
+		• Dropped support for the Stylish extension, which sends info about the URLs you visit to an external server.
+		• Dropped support for userstyles.org, which is filled with various trackers and advertisement.
+
+		• Theme settings can no be changed directly from Stylus. Which is one of the main reason the theme got rewritten. Enjoy.
 		• Version Number will now be written as "Major Update.Feature Update.Bugfix".
 		
-		I spent far too long working on this. If you use and enjoy this theme, consider donating: https://www.paypal.me/tinyplume.
+		I spent far too long working on this. If you use and enjoy this theme, consider a small donation: https://www.paypal.me/tinyplume.
 
 	v0.9.0 and older...
 		• Check here: https://userstyles.org/styles/170011/furaffinity-plumetweaks
 // ─── NOTE: Planned ────────────────────────────────────────────────────────────────────
-	v2.0.0 - "Hero of Light Update" - When Half-Life 3 gets released.
-		• Animating things a bit more.
-		• Support for light-color backgrounds: Automatically adjusting text color for light backgrounds.
-	v1.1.0 - "" - Soon™
+	v1.1.0 -  - Soon™
+		• Add animations to many things such as tags, blurred NSFW stuff, etc...
+
+	v1.2.0 - "The Font Update" - Maybe™
 		• Adjustement to font sizes.
 		• Font-size customisation settings.
 // ─── NOTE: Known Issues ────────────────────────────────────────────────────────────────────
-	• None at the moment.
+	• None at the moment
 ─────────────────────────────────────────────────────────────────────────────────────── */
 // ───────────────────────────────────────────────────────────────── !SECTION ─────
 
@@ -201,8 +209,8 @@
 
 	// NOTE Text-Areas Styling
 	#JSMessage, #JSMessage_blank,
-	textarea, .textbox {
-		border: none !important
+	textarea, .textbox, textarea[name=reply] {
+		border: none !important;
 		border-top: none !important;
 		box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
 		background: var(--BG-Dark) !important;
@@ -311,7 +319,7 @@
 	#footer:before {
 		color: var(--Acc);
 		font-size: 10pt !important;
-		content: "PlumeTweaks™ For FurAffinity\aVersion: 1.0.0\a\a© 2020 - CC-BY-NC-4.0\aTiny Plume";
+		content: "PlumeTweaks™ For FurAffinity\aVersion: 1.0.1\a\a© 2020 - CC-BY-NC-4.0\aTiny Plume";
 		white-space: pre;
 		font-weight: bold;
 	}
@@ -373,7 +381,7 @@
 	// ───────────────────────────────────────────────────────────────── !SECTION ─────
 
 	// ─── SECTION BACKGROUND COLORS & SHADOWS ────────────────────────────────────────
-	// NOTE Backkground Color
+	// NOTE Background Color
 	.section-body,
 	.section-footer,
 	.section-submission,
@@ -557,6 +565,19 @@
 
 	a.comment_anchor:target~.base {
 		text-shadow: 0px 0px 5px currentColor;
+	}
+
+	// NOTE Attempt to fix replies...
+	.comment_container {
+		.section-footer  {
+			background: var(--BG-Dark) !important;
+			padding: 5px;
+			margin-top: 5px;
+		}
+
+		.section-body {
+			background: var(--BG-Normal) !important;
+		}
 	}
 
 	// SECTION Hide Hidden Comments Conditional
