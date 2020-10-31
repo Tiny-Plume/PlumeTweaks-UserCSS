@@ -2,12 +2,15 @@
 
 PlumeTweaks™ is a collection of UserCSS styles for various websites I or my friends use.
 
-## Usage
+## Installation
 
 In order to use my UserCSS files, you will need the **Stylus** web browser extension.
-> **You can download the extension here**: [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/) • [Chrome](https://chrome.google.com/webstore/detail/stylus-beta/apmmpaebfobifelkijhaljbmpcgbjbdo) • [Opera](https://addons.opera.com/en/extensions/details/stylus/)
+> **You can download the extension here**: [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/) • [Chrome](https://chrome.google.com/webstore/detail/stylus-beta/apmmpaebfobifelkijhaljbmpcgbjbdo) • [Instructions for Opera](https://github.com/openstyles/stylus/wiki/Opera%2C-Outdated-Stylus)
 
-Once you've downloaded the extension, simply go to one of the userCSS files in this repository and click "Raw", it should allow Stylus to detect the file as a UserCSS and to install it.
+Once you've downloaded the extension for your browser, simply click one of the following links to install one of the themes:
+
+* [**PlumeTweaks™ For FurAffinity**](https://raw.githubusercontent.com/Tiny-Plume/PlumeTweaks-UserCSS/master/UserCSS/FurAffinity/PlumeTweaks%E2%84%A2%20For%20FurAffinity.user.styl)
+* I'll make more eventually...
 
 ## Browser Compatibility
 
